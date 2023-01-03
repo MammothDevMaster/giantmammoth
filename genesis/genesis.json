@@ -163,7 +163,7 @@
         "balance": "0x0"
       },
       "0xC90cf9B42CbD122810d3b4661C3E1083d24BB97B": {
-        "balance": "0x26B8454DAA9A29A91C00000"
+        "balance": "0x26B79BE5945B1F516800000"
       },
       "0xcA59d509D074d28c3fa89f976AAF7dc3302B327C": {
         "balance": "0x26C62AD77DC602DAE000000"
@@ -176,6 +176,9 @@
       },
       "0x602928E12CF7c77C61f50aE9437b0A082725c1b3": {
         "balance": "0x52B7D2DCC80CD2E4000000"
+      },
+      "0xbb16fae5808ff3dD77557448280A900f72B6991a": {
+        "balance": "0xA968163F0A57B400000"
       }
     },
     "number": "0x0",
