@@ -69,3 +69,9 @@ connect via HTTP, WS or IPC to a `geth` node configured with the above flags and
 need to speak [JSON-RPC](https://www.jsonrpc.org/specification) on all transports. You
 can reuse the same connection for multiple requests!
 
+### Add Peer
+
+```
+// in geth's console
+admin.addPeer("enode://2e5bdd40708ccd8b98c9d846a5172a6585100fd331c27570f1e57903e8d808addbf25d19f0ab451707113edd0dc38950d817cd2c5d98a25e4cf51709e6b18273@52.78.132.230:30303");
+```
