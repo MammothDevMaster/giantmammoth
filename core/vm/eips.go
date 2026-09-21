@@ -144,3 +144,14 @@ func enable2929(jt *JumpTable) {
 	jt[SELFDESTRUCT].constantGas = params.SelfdestructGasEIP150
 	jt[SELFDESTRUCT].dynamicGas = gasSelfdestructEIP2929
 }
+
+// enable3855 applies EIP-3855 (PUSH0 opcode):
+// - Adds an opcode that pushes constant 0 onto the stack.
+func enable3855(jt *JumpTable) {
+	jt[PUSH0] = &operation{
+		execute:     opPush0,
+		constantGas: GasQuickStep,
+		minStack:    minStack(0, 1),
+		maxStack:    maxStack(0, 1),
+	}
+}

@@ -881,3 +881,9 @@ func makeSwap(size int64) executionFunc {
 		return nil, nil
 	}
 }
+
+// opPush0 implements the PUSH0 opcode (EIP-3855): pushes the constant 0 onto the stack.
+func opPush0(pc *uint64, interpreter *EVMInterpreter, scope *ScopeContext) ([]byte, error) {
+	scope.Stack.push(new(uint256.Int))
+	return nil, nil
+}

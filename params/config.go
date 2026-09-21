@@ -53,6 +53,7 @@ var (
 		big.NewInt(0),
 		nil,
 		nil,
+		nil,
 	}
 
 	// AllCliqueProtocolChanges contains every protocol change (EIPs) introduced
@@ -79,6 +80,7 @@ var (
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
+		nil,
 		&CliqueConfig{Period: 0, Epoch: 30000},
 		nil,
 	}
@@ -102,6 +104,7 @@ var (
 		big.NewInt(0),
 		big.NewInt(0),
 		big.NewInt(0),
+		nil,
 		nil, nil,
 	}
 )
@@ -189,6 +192,8 @@ type ChainConfig struct {
 	NielsBlock      *big.Int `json:"nielsBlock,omitempty" toml:",omitempty"`      // nielsBlock switch block (nil = no fork, 0 = already activated)
 	MirrorSyncBlock *big.Int `json:"mirrorSyncBlock,omitempty" toml:",omitempty"` // mirrorSyncBlock switch block (nil = no fork, 0 = already activated)
 	BrunoBlock      *big.Int `json:"brunoBlock,omitempty" toml:",omitempty"`      // brunoBlock switch block (nil = no fork, 0 = already activated)
+
+	ShanghaiBlock   *big.Int `json:"shanghaiBlock,omitempty" toml:",omitempty"` // shanghaiBlock switch block for EIP-3855 PUSH0 (nil = no fork)
 
 	// Various consensus engines
 	Clique *CliqueConfig `json:"clique,omitempty" toml:",omitempty"`
@@ -339,6 +344,11 @@ func (c *ChainConfig) IsIstanbul(num *big.Int) bool {
 // IsBerlin returns whether num is either equal to the Berlin fork block or greater.
 func (c *ChainConfig) IsBerlin(num *big.Int) bool {
 	return isForked(c.BerlinBlock, num) || isForked(c.YoloV3Block, num)
+}
+
+// IsShanghai returns whether num is either equal to the Shanghai fork block or greater.
+func (c *ChainConfig) IsShanghai(num *big.Int) bool {
+	return isForked(c.ShanghaiBlock, num)
 }
 
 // IsCatalyst returns whether num is either equal to the Merge fork block or greater.
@@ -533,6 +543,7 @@ type Rules struct {
 	IsHomestead, IsEIP150, IsEIP155, IsEIP158               bool
 	IsByzantium, IsConstantinople, IsPetersburg, IsIstanbul bool
 	IsBerlin, IsCatalyst                                    bool
+	IsShanghai                                              bool
 	HasRuntimeUpgrade, HasDeployerProxy                     bool
 }
 
@@ -553,6 +564,7 @@ func (c *ChainConfig) Rules(num *big.Int) Rules {
 		IsPetersburg:      c.IsPetersburg(num),
 		IsIstanbul:        c.IsIstanbul(num),
 		IsBerlin:          c.IsBerlin(num),
+		IsShanghai:        c.IsShanghai(num),
 		IsCatalyst:        c.IsCatalyst(num),
 		HasRuntimeUpgrade: c.HasRuntimeUpgrade(num),
 		HasDeployerProxy:  c.HasDeployerProxy(num),
