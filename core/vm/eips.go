@@ -144,3 +144,12 @@ func enable2929(jt *JumpTable) {
 	jt[SELFDESTRUCT].constantGas = params.SelfdestructGasEIP150
 	jt[SELFDESTRUCT].dynamicGas = gasSelfdestructEIP2929
 }
+
+func enable3855(jt *JumpTable) {
+	jt[PUSH0] = &operation{
+		execute:     opPush0,
+		constantGas: GasQuickStep,
+		minStack:    minStack(0, 1),
+		maxStack:    maxStack(0, 1),
+	}
+}

@@ -180,6 +180,9 @@ func makeFullNode(ctx *cli.Context) (*node.Node, ethapi.Backend) {
 	if ctx.GlobalIsSet(utils.OverrideBerlinFlag.Name) {
 		cfg.Eth.OverrideBerlin = new(big.Int).SetUint64(ctx.GlobalUint64(utils.OverrideBerlinFlag.Name))
 	}
+	if ctx.GlobalIsSet(utils.OverrideShanghaiFlag.Name) {
+		cfg.Eth.OverrideShanghai = new(big.Int).SetUint64(ctx.GlobalUint64(utils.OverrideShanghaiFlag.Name))
+	}
 	backend, eth := utils.RegisterEthService(stack, &cfg.Eth)
 
 	// Configure catalyst.

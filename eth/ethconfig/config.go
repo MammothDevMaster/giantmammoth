@@ -177,6 +177,7 @@ type Config struct {
 
 	// Berlin block override (TODO: remove after the fork)
 	OverrideBerlin *big.Int `toml:",omitempty"`
+	OverrideShanghai *big.Int `toml:",omitempty"`
 }
 
 // CreateConsensusEngine creates a consensus engine for the given chain configuration.
